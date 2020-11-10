@@ -1,0 +1,17 @@
+
+.resize
+{
+  height: 50px;
+  position: relative;
+  display: flex;
+  border-radius: 12px;
+  width: 200px;
+}
+.size
+{
+  width: 600px;
+}
+.mark
+{
+  background-color: yellow;
+}
