@@ -21,14 +21,17 @@ class SearchBar extends Component{
     }
     empty=()=>{
         var item=this.refs.search.value;
-        var add;
-        if(this.state.results.some((v)=>v!=item))
+        var add='';
+       
+        if(!this.state.results.includes(item))
         {
-            add=item;
+            console.log(item);
+            add=item+add;
         }
         this.setState({
             results:[add,...this.state.results],
         });
+    
     }
     render()
     {
