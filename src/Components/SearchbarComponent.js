@@ -10,7 +10,7 @@ class SearchBar extends Component{
         this.empty=this.empty.bind(this);
         this.state={
            search:'',
-           results:["zenatix gurgaon","zenatix gurgaon address","ankit","internship","frontend"]
+           results:["zenatix gurgaon","zenatix gurgaon address","ankit"]
 
         }
     }
@@ -21,17 +21,14 @@ class SearchBar extends Component{
     }
     empty=()=>{
         var item=this.refs.search.value;
-        var add='';
-       
-        if(!this.state.results.includes(item))
+        var add;
+        if(this.state.results.some((v)=>v!=item))
         {
-            console.log(item);
-            add=item+add;
+            add=item;
         }
         this.setState({
             results:[add,...this.state.results],
         });
-    
     }
     render()
     {
@@ -57,13 +54,21 @@ class SearchBar extends Component{
                     {this.state.search.length!=0?<div className="row">
                        {this.state.search.length!=0?fliteredresults.map((item)=>{
                             var first=item.indexOf(this.state.search);
-                            var last=this.state.search.length;
+                            var k=item.split(this.state.search);
+                            var t=<mark className="mark">{this.state.search}</mark>
+                            var y=[];
+                            for(var i=0;i<k.length;i++)
+                            {
+                                y.push(k[i]);
+                                y.push(t);
+                            }
+                            var p=y.slice(0,-1);
                            return(
                                
                               <div className="col-12">
-                                   <span className="fa fa-search li"></span>&ensp;
-                                   
-                                    {item.substr(0,first)}<mark className="mark">{item.substr(first,this.state.search.length)}</mark>{item.substr(first+this.state.search.length,item.length)}
+                                
+                                   <span className="fa fa-search"></span>&ensp;
+                                    {p}
                                 </div>
                            )
                        }):null}
